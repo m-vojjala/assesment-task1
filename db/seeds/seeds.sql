@@ -1,14 +1,14 @@
 INSERT INTO
-  users(name, email, password)
+  users( userName, password)
 VALUES
-  ('John Doe', 'joh@ymail.com', 'password');
+  ('joh@ymail.com', 'password');
 
 INSERT INTO
-  users(name, email, password)
+  users(userName, password)
 VALUES
-  ('Amy Jones', 'amy@ymail.com', 'password');
+  ('amy@ymail.com', 'password');
 
 INSERT INTO
-  users(name, email, password)
+  users( userName, password)
 VALUES
-  ('Alice Blue', 'alice@gmail.com', 'password');
+  ('alice@gmail.com', 'password');
