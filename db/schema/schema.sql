@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS messages CASCADE;
+DROP TABLE IF EXISTS tweets CASCADE;
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
@@ -9,8 +10,19 @@ CREATE TABLE users (
 
 CREATE TABLE messages (
 id SERIAL PRIMARY KEY NOT NULL,
-sender_email VARCHAR(255) NOT NULL,
+sender_username VARCHAR(255) NOT NULL,
 sender_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+receiver_username VARCHAR(255) NOT NULL, 
 receiver_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-content TEXT
-)
+content TEXT,
+time_slot VARCHAR(25)
+);
+
+CREATE TABLE tweets (
+id SERIAL PRIMARY KEY NOT NULL,
+ tweet TEXT,
+ created_by INTEGER REFERENCES users(id) ON DELETE CASCADE,
+ created_date VARCHAR(25),
+ modified_date VARCHAR(25) 
+);
+ 

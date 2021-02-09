@@ -6,6 +6,7 @@ module.exports = (db) => {
   const helpers = initHelpers(db);
   router.post("/", (req, res) => {
     const { userName, password } = req.body;
+    if(userName){
     helpers.getUserbyUserName(userName)
       .then(user => {
         if (!user) {
@@ -19,6 +20,9 @@ module.exports = (db) => {
           res.send("user already exists!")
         }
       });
+    }else{
+      res.send("Email should not be empty!")
+    }
   });
   return router;
 };
