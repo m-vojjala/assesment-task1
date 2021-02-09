@@ -3,7 +3,6 @@ const chaiHttp = require("chai-http");
 const server = require("../server");
 
 chai.should();
-const expect = chai.expect();
 chai.use(chaiHttp);
 
 describe('Authentication of users', () => {
@@ -84,19 +83,30 @@ describe("POST /message", () => {
 });
 
 describe("POST /user/tweet", () => {
-  it("should not add the tweet if there is no sender ", (done) => {
-    const user = {
+  it("should validate the tweet length ", () => {
+    const tweet = {
       tweet: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the "
     };
     chai.request(server)
       .post("/user/tweet")
-      .send(user)
+      .send(tweet)
       .end((err, response) => {
         response.text.should.be.eq("Tweet is too long!");
-        done();
+      
       });
   });
 });
+
+describe("GET /tweets", () => {
+  it("get all the tweets", () => {
+    chai.request(server)
+      .get("/tweets")
+      .end((err, response) => {
+        response.body.should.be.a('array');
+      });
+  });
+});
+
 
 
 
