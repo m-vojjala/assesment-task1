@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "node server.js",
     "dev": "node node_modules/nodemon/bin/nodemon.js",
     "db:reset": "node bin/resetdb.js"
@@ -14,12 +14,16 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "cookie-session": "^1.4.0",
     "express": "^4.17.1",
     "pg": "^8.5.1",
     "pg-native": "^3.0.0"
   },
   "devDependencies": {
+    "chai": "^4.3.0",
+    "chai-http": "^4.3.0",
     "dotenv": "^8.2.0",
+    "mocha": "^8.2.1",
     "nodemon": "^2.0.7"
   }
 }
