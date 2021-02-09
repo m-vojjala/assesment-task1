@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "mocha",
+    "test": "./node_modules/mocha/bin/mocha",
     "start": "node server.js",
     "dev": "node node_modules/nodemon/bin/nodemon.js",
     "db:reset": "node bin/resetdb.js"
@@ -16,8 +16,11 @@
     "body-parser": "^1.19.0",
     "cookie-session": "^1.4.0",
     "express": "^4.17.1",
+    "express-router": "0.0.1",
+    "morgan": "^1.10.0",
     "pg": "^8.5.1",
-    "pg-native": "^3.0.0"
+    "pg-native": "^3.0.0",
+    "socket.io": "^3.1.1"
   },
   "devDependencies": {
     "chai": "^4.3.0",

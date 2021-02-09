@@ -7,6 +7,7 @@ chai.should();
 chai.use(chaiHttp);
 
 
+
 describe('Authentication of users', () => {
   // Test to post new Register to the database
   describe("POST /register", () => {
