@@ -22,7 +22,6 @@ CREATE TABLE tweets (
 id SERIAL PRIMARY KEY NOT NULL,
  tweet TEXT,
  created_by INTEGER REFERENCES users(id) ON DELETE CASCADE,
- created_date VARCHAR(25),
- modified_date VARCHAR(25) 
+ created_date VARCHAR(25) 
 );
  

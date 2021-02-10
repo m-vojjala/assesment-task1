@@ -30,7 +30,10 @@ const loginRoutes = require("./routes/login");
 const sendMessageRoutes = require("./routes/sendMessage");
 const receivedMessageRoutes = require("./routes/receivedMessage");
 const createTweet = require("./routes/createTweet");
-const ReadTweet = require("./routes/readAllTweets");
+const readTweets = require("./routes/readAllTweets");
+const readSingleTweet = require("./routes/readTweet");
+const updateTweet = require("./routes/updateTweet");
+const deleteAllTweets = require("./routes/deleteAllTweets");
 
 
 
@@ -40,7 +43,10 @@ app.use("/login", loginRoutes(db));
 app.use("/message", sendMessageRoutes(db));
 app.use("/receivedMessage", receivedMessageRoutes(db));
 app.use("/user/tweet", createTweet(db));
-app.use("/tweets", ReadTweet(db));
+app.use("/tweets", readTweets(db));
+app.use("/tweet", readSingleTweet(db));
+app.use("/user/tweet", updateTweet(db));
+app.use("/user/tweets/delete", deleteAllTweets(db));
 
 
 

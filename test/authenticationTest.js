@@ -5,8 +5,8 @@ const server = require("../server");
 chai.should();
 chai.use(chaiHttp);
 
+// Unit tests for register and login end points 
 describe('Authentication of users', () => {
-  // Test to post new user to the database
   describe("POST /register", () => {
     it("should add new user to the database", (done) => {
       const user = {
@@ -66,46 +66,10 @@ describe('Authentication of users', () => {
   });
 });
 
-describe("POST /message", () => {
-  it("should not add the message if there is no sender ", (done) => {
-    const user = {
-      receiver_username: "Ali@m.com",
-      content: "hi"
-    };
-    chai.request(server)
-      .post("/message")
-      .send(user)
-      .end((err, response) => {
-        response.text.should.be.eq("Please login!");
-        done();
-      });
-  });
-});
 
-describe("POST /user/tweet", () => {
-  it("should validate the tweet length ", () => {
-    const tweet = {
-      tweet: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the "
-    };
-    chai.request(server)
-      .post("/user/tweet")
-      .send(tweet)
-      .end((err, response) => {
-        response.text.should.be.eq("Tweet is too long!");
-      
-      });
-  });
-});
 
-describe("GET /tweets", () => {
-  it("get all the tweets", () => {
-    chai.request(server)
-      .get("/tweets")
-      .end((err, response) => {
-        response.body.should.be.a('array');
-      });
-  });
-});
+
+
 
 
 
