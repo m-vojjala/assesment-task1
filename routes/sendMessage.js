@@ -8,15 +8,15 @@ module.exports = (db) => {
 
   router.post("/", (req, res) => {
     const { receiver_username, content } = req.body;
-    const sender_id = req.session.user_id;
+    const senderId = req.session.user_id;
     // checking if sender_id exists
-    if (sender_id) {
+    if (senderId) {
       if (content.length < 25) {
         // if sender exists, getting username using id and adding the new message to the database.
-        helpers.getUsernameById(sender_id)
-          .then(sender_username => {
+        helpers.getUsernameById(senderId)
+          .then(senderUsername => {
             if (receiver_username) {
-              helpers.addNewMessage(sender_username, sender_id, content, receiver_username, moment().format('h:mm a'))
+              helpers.addNewMessage(senderUsername, senderId, content, receiver_username, moment().format('h:mm a'))
                 .then(message => res.send("Message :" + message.content))
                 .catch(err => console.log(err));
             } else {

@@ -4,19 +4,15 @@ const initHelpers = require('../tweetHelpers');
 
 module.exports = (db) => {
   const helpers = initHelpers(db);
-  router.get(`/:tweetId/`, (req, res) => {
+  router.delete(`/:tweetId/`, (req, res) => {
     const tweetId = req.params.tweetId;
     const userId = req.session.user_id;
     if (userId) {
-      helpers.readTweet(tweetId, userId)
-        .then((tweet) => {
-          if (tweet) {
-            res.send(tweet.tweet)
-          } else {
-            res.sendStatus(404);
-          }
-        })
+      helpers.deleteSingleTweet(tweetId, userId)
+        .then(result => res.sendStatus(204))
         .catch(err => console.log(err));
+    } else {
+      res.sendStatus(404);
     }
   });
   return router;

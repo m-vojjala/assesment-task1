@@ -24,13 +24,13 @@ before(function (done) {
     });
 });
 
-describe("GET /tweets", () => {
-  it("get all the tweets", () => {
+describe("DELETE /user/tweet/delete/:tweetId", () => {
+  it("delete all the tweets of a user", (done) => {
     authenticatedUser
-      .get("/tweets")
+      .delete(`/user/tweet/delete/${17}`)
       .end((err, response) => {
-        response.should.have.status(200)
+        expect(response.statusCode).to.equal(204);
+        done();
       });
   });
 });
-

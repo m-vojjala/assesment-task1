@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 
 //let's set up the data we need to pass to the login method
 const userCredentials = {
-  userName: 'alice@gmail.com ',
+  userName: 'alice@gmail.com',
   password: 'password'
 }
 //now let's login the user before we run any tests

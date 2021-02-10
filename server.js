@@ -34,6 +34,7 @@ const readTweets = require("./routes/readAllTweets");
 const readSingleTweet = require("./routes/readTweet");
 const updateTweet = require("./routes/updateTweet");
 const deleteAllTweets = require("./routes/deleteAllTweets");
+const deleteSingleTweet = require("./routes/deleteSingleTweet");
 
 
 
@@ -47,6 +48,7 @@ app.use("/tweets", readTweets(db));
 app.use("/tweet", readSingleTweet(db));
 app.use("/user/tweet", updateTweet(db));
 app.use("/user/tweets/delete", deleteAllTweets(db));
+app.use("/user/tweet/delete", deleteSingleTweet(db));
 
 
 

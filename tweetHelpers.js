@@ -40,11 +40,20 @@ module.exports = (db) => {
     .catch(err => console.log(err));
   }
 
+  const deleteSingleTweet = (tweet_id,user_id) =>{
+    return db.query(`DELETE FROM tweets
+    WHERE tweets.id = $1 AND created_by = $2 `,
+    [tweet_id,user_id])
+    .then(res => res.rows[0])
+    .catch(err => console.log(err));
+  }
+
   return {
     createTweet,
     readAllTweets,
     readTweet,
     updateTweet,
-    deleteAllTweets
+    deleteAllTweets,
+    deleteSingleTweet
   };
   }

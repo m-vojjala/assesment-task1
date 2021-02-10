@@ -11,7 +11,7 @@ module.exports = (db) => {
       .then((tweets) => {
         tweets.map(tweet => {
           helpers2.getUsernameById(tweet.created_by)
-            .then((userName) => console.log(tweet.tweet, userName));
+            .then((userName) => res.sendStatus(200));
         });
       });
   });
