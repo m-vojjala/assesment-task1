@@ -5,7 +5,7 @@ const server = require("../server");
 chai.should();
 chai.use(chaiHttp);
 
-// Unit tests for register and login end points 
+// tests for register and login end points 
 describe('Authentication of users', () => {
   describe("POST /register", () => {
     it("should add new user to the database", (done) => {

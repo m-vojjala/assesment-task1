@@ -7,25 +7,25 @@ chai.should();
 const expect = chai.expect;
 chai.use(chaiHttp);
 
-//let's set up the data we need to pass to the login method
+
 const userCredentials = {
   userName: 'joh@ymail.com',
   password: 'password'
 }
-//now let's login the user before we run any tests
+// before any test user is logged in 
 var authenticatedUser = chai.request.agent(server);
-before(function (done) {
+before((done) => {
   authenticatedUser
     .post('/login')
     .send(userCredentials)
-    .end(function (err, response) {
+    .end((err, response) => {
       expect(response.statusCode).to.equal(200);
       done();
     });
 });
 
 describe("GET /tweet", () => {
-  it("get a single tweet", () => {
+  it("should get a single tweet", () => {
     authenticatedUser
       .get(`/tweet/${5}`)
       .end((err, response) => {

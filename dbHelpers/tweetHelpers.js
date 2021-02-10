@@ -1,5 +1,3 @@
-const { use } = require("../server");
-
 module.exports = (db) => {
 
   const createTweet = (tweet,user_id,created_date) =>{
@@ -12,7 +10,7 @@ module.exports = (db) => {
   }
 
   const readAllTweets = () =>{
-    return db.query(`SELECT * FROM tweets`)
+    return db.query(`SELECT tweet,userName,created_date FROM tweets JOIN users ON tweets.created_by = users.id`)
     .then(res => res.rows)
     .catch(err => console.log(err));
   }
@@ -48,6 +46,7 @@ module.exports = (db) => {
     .catch(err => console.log(err));
   }
 
+ 
   return {
     createTweet,
     readAllTweets,

@@ -25,6 +25,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
+const PORT = process.env.PORT;
+
 const registerRoutes = require("./routes/register");
 const loginRoutes = require("./routes/login");
 const sendMessageRoutes = require("./routes/sendMessage");
@@ -57,8 +59,8 @@ app.use("/user/tweet/unlike",removeLikedTweet(db));
 
 
 
-app.listen(8990, () => {
-  console.log(`server is running on port 8990`);
+app.listen(PORT, () => {
+  console.log(`server is running on port ${PORT}`);
 });
 
 module.exports = app;

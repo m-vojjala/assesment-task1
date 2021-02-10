@@ -7,18 +7,18 @@ chai.should();
 const expect = chai.expect;
 chai.use(chaiHttp);
 
-//let's set up the data we need to pass to the login method
+
 const userCredentials = {
   userName: 'joh@ymail.com',
   password: 'password'
 }
-//now let's login the user before we run any tests
+// before any test user is logged in 
 var authenticatedUser = chai.request.agent(server);
-before(function (done) {
+before((done) => {
   authenticatedUser
     .post('/login')
     .send(userCredentials)
-    .end(function (err, response) {
+    .end((err, response) => {
       expect(response.statusCode).to.equal(200);
       done();
     });
@@ -47,7 +47,7 @@ describe("POST /message", () => {
       .post("/message")
       .send(message)
       .end((err, response) => {
-        expect(response.body).to.contain("receiver_username should not be empty!");
+        response.text.should.be.eq("receiver_username should not be empty!");
         done();
       });
   });
@@ -60,7 +60,7 @@ describe("POST /message", () => {
       .post("/message")
       .send(message)
       .end((err, response) => {
-        expect(response.body).to.contain("message is too long");
+        response.text.should.be.eq("message is too long");
         done();
       });
   });

@@ -7,18 +7,18 @@ chai.should();
 const expect = chai.expect;
 chai.use(chaiHttp);
 
-//let's set up the data we need to pass to the login method
+
 const userCredentials = {
   userName: 'joh@ymail.com',
   password: 'password'
 }
-//now let's login the user before we run any tests
+// before any test user is logged in 
 var authenticatedUser = chai.request.agent(server);
-before(function (done) {
+before((done) => {
   authenticatedUser
     .post('/login')
     .send(userCredentials)
-    .end(function (err, response) {
+    .end((err, response) => {
       expect(response.statusCode).to.equal(200);
       done();
     });
@@ -34,6 +34,17 @@ describe("PUT /tweet", () => {
       .send(tweet)
       .end((err, response) => {
         expect(response.statusCode).to.equal(200);
+      });
+  });
+  it("should show an error if tweet length is more than 140 characters", () => {
+    const tweet = {
+      tweet: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. "
+    };
+    authenticatedUser
+      .put(`/user/tweet/${4}`)
+      .send(tweet)
+      .end((err, response) => {
+        response.text.should.be.eq("Tweet is too long!");
       });
   });
 });

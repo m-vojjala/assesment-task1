@@ -4,9 +4,13 @@ const initHelpers = require('../dbHelpers/tweetHelpers');
 
 module.exports = (db) => {
   const tweetHelpers = initHelpers(db);
+
   router.delete(`/:tweetId/`, (req, res) => {
+
     const tweetId = req.params.tweetId;
     const userId = req.session.user_id;
+
+    // if user exists, deletes the tweet of a particular user
     if (userId) {
       tweetHelpers.deleteSingleTweet(tweetId, userId)
         .then(result => res.sendStatus(204))

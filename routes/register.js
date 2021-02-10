@@ -4,8 +4,12 @@ const initHelpers = require('../dbHelpers/helpers');
 
 module.exports = (db) => {
   const helpers = initHelpers(db);
+
   router.post("/", (req, res) => {
+
     const { userName, password } = req.body;
+
+    // new user able to register
     if (userName) {
       helpers.getUserbyUserName(userName)
         .then(user => {

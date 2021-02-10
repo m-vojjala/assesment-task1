@@ -4,9 +4,13 @@ const initHelpers = require('../dbHelpers/tweetHelpers');
 
 module.exports = (db) => {
   const tweetHelpers = initHelpers(db);
+
   router.get(`/:tweetId/`, (req, res) => {
+
     const tweetId = req.params.tweetId;
     const userId = req.session.user_id;
+
+    // user able to read a particular single tweet
     if (userId) {
       tweetHelpers.readTweet(tweetId, userId)
         .then((tweet) => {

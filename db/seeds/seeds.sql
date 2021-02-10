@@ -13,11 +13,14 @@ INSERT INTO
 VALUES
   ('alice@gmail.com', 'password');
 
-INSERT INTO messages (sender_username,sender_id,receiver_username,receiver_id,content) VALUES('amy@ymail.com',2,'alice@gmail.com',3,'Hey! Wassup!');
+INSERT INTO messages (sender_username,sender_id,receiver_username,receiver_id,content,time_slot) VALUES('amy@ymail.com',2,'alice@gmail.com',3,'Hey! Wassup!','10:56 am'
+);
 
-INSERT INTO messages (sender_username,sender_id,receiver_username,receiver_id,content) VALUES('alice@gmail.com',3,'joh@ymail.com',1,'Hello,How are you?');
+INSERT INTO messages (sender_username,sender_id,receiver_username,receiver_id,content,time_slot) VALUES('alice@gmail.com',3,'joh@ymail.com',1,'Hello,How are you?','10:55 am'
+);
 
-INSERT INTO messages (sender_username,sender_id,receiver_username,receiver_id,content) VALUES('alice@gmail.com',3,'joh@ymail.com',1,'Hello');
+INSERT INTO messages (sender_username,sender_id,receiver_username,receiver_id,content,time_slot) VALUES('alice@gmail.com',3,'joh@ymail.com',1,'Hello','10:59 am
+');
 
 INSERT INTO tweets (tweet,created_by,created_date) VALUES ('BLAH BLAH BLAH',3,'02/10/2021');
 
