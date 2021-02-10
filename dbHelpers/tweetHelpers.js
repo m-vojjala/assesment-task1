@@ -1,4 +1,4 @@
-const { use } = require("./server");
+const { use } = require("../server");
 
 module.exports = (db) => {
 
@@ -44,7 +44,7 @@ module.exports = (db) => {
     return db.query(`DELETE FROM tweets
     WHERE tweets.id = $1 AND created_by = $2 `,
     [tweet_id,user_id])
-    .then(res => res.rows[0])
+    .then(res => res.rows)
     .catch(err => console.log(err));
   }
 

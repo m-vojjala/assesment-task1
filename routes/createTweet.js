@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const initHelpers = require('../tweetHelpers');
+const initHelpers = require('../dbHelpers/tweetHelpers');
 
 module.exports = (db) => {
-  const helpers = initHelpers(db);
+  const tweetHelpers = initHelpers(db);
   router.post("/", (req, res) => {
     const userId = req.session.user_id;
     const { tweet } = req.body;
@@ -14,7 +14,7 @@ module.exports = (db) => {
     today = mm + '/' + dd + '/' + yyyy;
     if (userId) {
       if (tweet.length < 140) {
-        helpers.createTweet(tweet, userId, today)
+        tweetHelpers.createTweet(tweet, userId, today)
           .then(response => {
             res.send(response)
           })

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const initHelpers = require('../helpers');
+const initHelpers = require('../dbHelpers/helpers');
 
 module.exports = (db) => {
   const helpers = initHelpers(db);

@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 
 //let's set up the data we need to pass to the login method
 const userCredentials = {
-  userName: 'joh@ymail.com',
+  userName: 'amy@ymail.com',
   password: 'password'
 }
 //now let's login the user before we run any tests
@@ -24,10 +24,10 @@ before(function (done) {
     });
 });
 
-describe("GET /tweet", () => {
-  it("get a single tweet", () => {
+describe("GET /user/tweets/likes", () => {
+  it("should get all liked tweets of a user", () => {
     authenticatedUser
-      .get(`/tweet/${5}`)
+      .get(`/user/tweets/likes`)
       .end((err, response) => {
         expect(response.statusCode).to.equal(200);
       });

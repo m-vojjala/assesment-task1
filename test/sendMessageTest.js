@@ -38,5 +38,31 @@ describe("POST /message", () => {
         done();
       });
   });
+  it("should not add the message when receiver_username is empty  ", (done) => {
+    const message = {
+      receiver_username: "",
+      content: "huhueirityiue"
+    };
+    authenticatedUser
+      .post("/message")
+      .send(message)
+      .end((err, response) => {
+        expect(response.body).to.contain("receiver_username should not be empty!");
+        done();
+      });
+  });
+  it("should not add the message when the message is too long ", (done) => {
+    const message = {
+      receiver_username: "amy@ymail.com",
+      content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
+    };
+    authenticatedUser
+      .post("/message")
+      .send(message)
+      .end((err, response) => {
+        expect(response.body).to.contain("message is too long");
+        done();
+      });
+  });
 });
 

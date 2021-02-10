@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const initHelpers = require('../tweetHelpers');
+const initHelpers = require('../dbHelpers/tweetHelpers');
 
 module.exports = (db) => {
-  const helpers = initHelpers(db);
+  const tweetHelpers = initHelpers(db);
   router.delete(`/:tweetId/`, (req, res) => {
     const tweetId = req.params.tweetId;
     const userId = req.session.user_id;
     if (userId) {
-      helpers.deleteSingleTweet(tweetId, userId)
+      tweetHelpers.deleteSingleTweet(tweetId, userId)
         .then(result => res.sendStatus(204))
         .catch(err => console.log(err));
     } else {

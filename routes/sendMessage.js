@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const moment = require('moment');
-const initHelpers = require('../helpers');
+const initHelpers = require('../dbHelpers/helpers');
 
 module.exports = (db) => {
   const helpers = initHelpers(db);
@@ -20,7 +20,7 @@ module.exports = (db) => {
                 .then(message => res.send("Message :" + message.content))
                 .catch(err => console.log(err));
             } else {
-              res.send("Receiver_username is")
+              res.send("receiver_username should not be empty!")
             }
           });
       } else {

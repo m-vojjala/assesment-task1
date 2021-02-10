@@ -1,17 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const initHelpers1 = require('../tweetHelpers');
-const initHelpers2 = require('../helpers');
+const initTweetHelpers = require('../dbHelpers/tweetHelpers');
+const initHelpers = require('../dbHelpers/helpers');
 
 module.exports = (db) => {
-  const helpers1 = initHelpers1(db);
-  const helpers2 = initHelpers2(db);
+  const tweetHelpers = initTweetHelpers(db);
+  const helpers = initHelpers(db);
   router.get("/", (req, res) => {
-    helpers1.readAllTweets()
+    tweetHelpers.readAllTweets()
       .then((tweets) => {
         tweets.map(tweet => {
-          helpers2.getUsernameById(tweet.created_by)
-            .then((userName) => res.sendStatus(200));
+          helpers.getUsernameById(tweet.created_by)
+            .then((userName) => res.status(200).send((`${userName}: ${tweet.tweet}`).toString()));
         });
       });
   });

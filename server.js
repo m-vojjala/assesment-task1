@@ -35,8 +35,9 @@ const readSingleTweet = require("./routes/readTweet");
 const updateTweet = require("./routes/updateTweet");
 const deleteAllTweets = require("./routes/deleteAllTweets");
 const deleteSingleTweet = require("./routes/deleteSingleTweet");
-
-
+const likeTweet = require("./routes/likeTweet");
+const getAllLikeTweets = require("./routes/getAllLikeTweets");
+const removeLikedTweet = require("./routes/removeLikeTweet")
 
 
 app.use("/register", registerRoutes(db));
@@ -49,6 +50,10 @@ app.use("/tweet", readSingleTweet(db));
 app.use("/user/tweet", updateTweet(db));
 app.use("/user/tweets/delete", deleteAllTweets(db));
 app.use("/user/tweet/delete", deleteSingleTweet(db));
+app.use("/user/tweet/like",likeTweet(db));
+app.use("/user/tweets/likes",getAllLikeTweets(db));
+app.use("/user/tweet/unlike",removeLikedTweet(db));
+
 
 
 
